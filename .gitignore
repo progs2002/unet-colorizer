@@ -1,0 +1,6 @@
+data/
+checkpoints/
+logs/
+.python-version
+**/__pycache__/
+
