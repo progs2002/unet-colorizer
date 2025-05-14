@@ -23,7 +23,7 @@ class TrainOptions:
     log_dir: str
     checkpoint_dir: str
     checkpoint: str | None = None
-    val_interval: int = 100
+    val_interval: int = 10
     device: str = "cuda"
 
 class Trainer:
@@ -114,6 +114,7 @@ class Trainer:
 
         #sample one batch and log one image 
         x, y = random.choice(self.val_ds)
+        x, y = x.unsqueeze(0).to(self.device), y.unsqueeze(0).to(self.device)        
         with torch.no_grad():
             y_hat = self.model(x)
 
@@ -129,8 +130,8 @@ class Trainer:
             self.optimizer.step()                
             print(loss)
         
-            # if self.global_step % self.opts.val_interval == 0:
-            #     self.validate(self.global_step)
+            if self.global_step % self.opts.val_interval == 0:
+                self.validate(self.global_step)
 
             #TODO: add checkpointing
 
@@ -140,12 +141,12 @@ if __name__ == "__main__":
     opts = TrainOptions(
         1e-4,
         1,
-        "/Users/progs/Pictures",
-        "/Users/progs/Downloads",
+        "/home/progs/dev/YWAI/demo-images/",
+        "/home/progs/Pictures/maagi_potabo/",
         run_name="exp0",
         log_dir="logs",
         checkpoint_dir="checkpoints",
-        device="cpu"
+        device="cuda"
     )
 
     trainer = Trainer(opts)
