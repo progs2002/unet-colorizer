@@ -11,11 +11,14 @@ from config import transforms
 #bash: $kaggle datasets download ambityga/imagenet100
 
 class PairedDataset(Dataset):
-    def __init__(self, root_dir, extensions=(".jpg", ".jpeg", ".png")):
+    def __init__(self, root_dir, extensions=(".jpg", ".jpeg", ".png", ".JPEG"), limit=None):
         self.root_dir = root_dir
         self.transform = transforms["train"]
         self.extensions = extensions
         self.image_paths = self._load_images()
+
+        if limit is not None:
+            self.image_paths = self.image_paths[:limit]
 
     
     def _rgb_to_grayscale(self, tensor_img):

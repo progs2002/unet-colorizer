@@ -144,7 +144,7 @@ if __name__ == "__main__":
         "/home/progs/dev/YWAI/demo-images/",
         "/home/progs/Pictures/maagi_potabo/",
         run_name="exp0",
-        log_dir="logs",
+        log_dir="logs2",
         checkpoint_dir="checkpoints",
         device="cuda"
     )
