@@ -142,7 +142,7 @@ if __name__ == "__main__":
         1e-4,
         1,
         "/home/progs/dev/YWAI/demo-images/",
-        "/home/progs/Pictures/maagi_potabo/",
+        "/home/progs/Pictures/demo-images-2/",
         run_name="exp0",
         log_dir="logs2",
         checkpoint_dir="checkpoints",
